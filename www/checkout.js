@@ -7,25 +7,25 @@ document.addEventListener("DOMContentLoaded", async () => {
       window.location.href = "cart.html";
       return;
     }
-
+  
     const subtotal = cart.reduce((sum, item) =>
-        sum + Frame.calculatePrice(item.printSize, item.frameStyle, item.frameWidth, item.matWidth) / 100, 0);
-    
-      document.getElementById("price-subtotal").innerText = subtotal.toFixed(2);
-
+      sum + Frame.calculatePrice(item.printSize, item.frameStyle, item.frameWidth, item.matWidth) / 100, 0);
+  
+    document.getElementById("price-subtotal").innerText = subtotal.toFixed(2);
+  
     const shipping = await fetch("shipping.json").then(res => res.json());
     const select = document.getElementById("country");
-
+  
     shipping.destinations.forEach(dest => {
-        const opt = document.createElement("option");
-        opt.value = dest.isoCode;
-        opt.textContent = dest.displayName;
-        select.appendChild(opt);
-      });
-
+      const opt = document.createElement("option");
+      opt.value = dest.isoCode;
+      opt.textContent = dest.displayName;
+      select.appendChild(opt);
+    });
+  
     select.addEventListener("change", () => updateShipping(select.value, shipping, subtotal));
     updateShipping(select.value, shipping, subtotal);
-});
+  });
 
 function updateShipping(countryCode, shipping, subtotal) {
     const dest = shipping.destinations.find(d => d.isoCode === countryCode);
