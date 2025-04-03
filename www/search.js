@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     updateCartLink();
   
     if (!query) {
-      // Si no hay búsqueda, mostrar highlights
+
       const highlights = await fetch('highlights.json').then(res => res.json());
       const objects = await fetchObjects(highlights.highlights.slice(0, 100));
       displayResults(objects);

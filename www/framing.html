@@ -134,48 +134,9 @@
     </form>
   </main>
 
-  <script type="module">
-    import * as Frame from './frame.js';
+  <script type="module" src="framing.js"></script>
 
-    window.updateFrameWidth = function updateFrameWidth(w) {
-      const form = document.getElementById("framing-form");
-      var w = Math.round(clamp(w, 2, 5) * 10) / 10;
-      form.frameWidth.value = w;
-      form.frameWidthR.value = w;
-      render();
-    }
 
-    function clamp(x, min, max) {
-      return Math.min(Math.max(x, min), max);
-    }
-
-    window.render = function () {
-      // render picture frame
-      // TODO: set the correct values
-      const previewContainer = document.getElementById("preview-container");
-      const previewImg = document.getElementById("preview-image");
-      const label = document.getElementById("image-label");
-      const printSize = undefined;
-      const frameStyle = undefined;
-      const frameWidth = undefined;
-      const matColor = undefined;
-      const matWidth = undefined;
-      Frame.render(previewImg, previewContainer, label, printSize, frameStyle, frameWidth, matColor, matWidth);
-
-      // update print sizes
-      const printSizes = Frame.getPrintSizes(previewImg);
-      const totalWidth = printSizes[printSize][0] + 2 * frameWidth + 2 * matWidth;
-      const totalHeight = printSizes[printSize][1] + 2 * frameWidth + 2 * matWidth;
-      document.getElementById("print-size-s-label").innerHTML = `Small <br>${printSizes['S'][0] / 10} × ${printSizes['S'][1] / 10} cm`
-      document.getElementById("print-size-m-label").innerHTML = `Medium<br>${printSizes['M'][0] / 10} × ${printSizes['M'][1] / 10} cm`
-      document.getElementById("print-size-l-label").innerHTML = `Large <br>${printSizes['L'][0] / 10} × ${printSizes['L'][1] / 10} cm`
-      document.getElementById('total-size').innerHTML = `${totalWidth / 10} × ${totalHeight / 10} cm`;
-
-      // TODO: update price
-    }
-
-    window.addEventListener("resize", render);
-  </script>
 </body>
 
 </html>
