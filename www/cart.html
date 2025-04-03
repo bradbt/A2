@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Cart | Artmart</title>
+</head>
+
+<body>
+  <header>
+    <a href="search.html">
+      <img src="artmart_logo.png" alt="Artmart" class="logo">
+    </a>
+    <nav>
+      <a href="search.html">Search</a>
+      <a href="cart.html" id="cart-link">Cart</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section id="cart" class="cart">
+      <div id="cart-total" class="cart-total">Total: <span id="price-total">0</span></div>
+      <button type="button" id="cart-checkout" class="cart-checkout" onclick="window.location.href='checkout.html';">Checkout</button>
+    </section>
+  </main>
+
+  <script type="module">
+    import * as Frame from './frame.js';
+
+    /** 
+     * Adds the given cart item to the DOM.
+     * 
+     * TODO: finalize this function
+     *
+     * @param cartItem A cart item from local storage.
+    */
+    async function createCartItem(cartItem) {
+      // TODO: set the right values
+      const printSize = undefined;
+      const frameStyle = undefined;
+      const frameWidth = undefined;
+      const matColor = undefined;
+      const matWidth = undefined;
+
+      const itemDiv = document.createElement("div");
+      itemDiv.classList.add("cart-item");
+
+      const previewDiv = document.createElement("div");
+      previewDiv.classList.add("cart-preview");
+
+      const previewImg = document.createElement("img");
+      previewImg.classList.add("cart-thumb")
+      previewImg.onload = () => {
+        Frame.render(previewImg, previewDiv, null, printSize, frameStyle, frameWidth, matColor, matWidth);
+      };
+
+      // TODO: complete link URL
+      const framingLink = document.createElement("a");
+      framingLink.href = `undefined`;
+      framingLink.appendChild(previewImg);
+
+      previewDiv.appendChild(framingLink);
+      itemDiv.appendChild(previewDiv);
+
+      // TODO: complete item description
+      const labelDiv = document.createElement("div")
+      labelDiv.classList.add("museum-label");
+      labelDiv.innerHTML = `
+          <div>
+            <span class="artist"></span>
+            <span class="title"></span>,
+            <span class="date"></span>
+            <br><br>
+            <span class="frame-description"></span>
+          </div>
+          <div class="price">€ </div>
+          <button class="cart-remove" aria-label="Remove"></button>`;
+
+      itemDiv.appendChild(labelDiv);
+      
+      // TODO: add itemDiv to DOM
+    }
+  </script>
+</body>
+
+</html>
